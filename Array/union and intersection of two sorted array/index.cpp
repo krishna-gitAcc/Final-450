@@ -25,31 +25,25 @@ vector<int> intersection(vector<int> v1, vector<int> v2, int n1, int n2) {
 
 vector<int> unionset(vector<int> v1, vector<int> v2, int n1, int n2) {
   vector<int> ans;
+  set<int> u;
   int i = 0;
-  int j = 0;
-  while (i < n1 && j < n2) {
-    if (v1[i] < v2[j]) {
-      ans.push_back(v1[i]);
-      i++;
-    } else {
-      if (v1[i] > v2[j]) {
-        ans.push_back(v2[j]);
-        j++;
-      } else {
-        ans.push_back(v1[i]);
-        i++;
-        j++;
-      }
-    }
-  }
-  while (i < n1) {
-    ans.push_back(v1[i]);
+  while(i<n1){
+    u.insert(v1[i]);
     i++;
   }
-  while (j < n2) {
-    ans.push_back(v2[j]);
-    j++;
+  i=0;
+  while(i<n2){
+    u.insert(v2[i]);
+    i++;
   }
+  set<int> :: iterator it;
+  for ( it = u.begin() ; it!= u.end(); it++)
+  {
+    ans.push_back(*it);
+  }
+
+
+
 
   return ans;
 }
